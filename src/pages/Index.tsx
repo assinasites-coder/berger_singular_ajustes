@@ -5,6 +5,7 @@ import { MessageSquare, Lightbulb, Brain } from "lucide-react";
 import Layout from "@/components/Layout";
 import ChatInterface from "@/components/ChatInterface";
 import ConversationsList from "@/components/ConversationsList";
+import QuickToolsMenu from "@/components/QuickToolsMenu";
 import IdeiasManager from "@/components/IdeiasManager";
 import MemoriaManager from "@/components/MemoriaManager";
 
@@ -59,7 +60,8 @@ const Index = () => {
 
           <TabsContent value="chat" className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-              <div className="lg:col-span-1">
+              {/* Left column with conversations list and quick tools menu */}
+              <div className="lg:col-span-1 space-y-4">
                 <ConversationsList
                   onSelectConversation={handleSelectConversation}
                   onNewConversation={handleNewConversation}
@@ -67,6 +69,8 @@ const Index = () => {
                   conversations={conversations}
                   onConversationsUpdate={handleConversationsUpdate}
                 />
+                {/* Quick tools menu placed below the conversations list */}
+                <QuickToolsMenu />
               </div>
               <div className="lg:col-span-3">
                 <Card>
