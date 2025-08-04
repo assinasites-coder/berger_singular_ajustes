@@ -8,8 +8,14 @@ const supabaseUrl: string | undefined = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey: string | undefined = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Supabase environment variables VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY must be provided');
+  throw new Error(
+    'Supabase environment variables VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY must be provided'
+  );
 }
 
-// Cria o cliente Supabase utilizando apenas a URL e a chave anônima.
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Cria o cliente Supabase com redirect configurado para login social
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    redirectTo: import.meta.env.VITE_SITE_URL + "/auth/v1/callback",
+  },
+});
